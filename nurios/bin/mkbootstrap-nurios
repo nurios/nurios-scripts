@@ -1,0 +1,18 @@
+#!/bin/bash
+bootstrap()
+{
+	if [ ! -d $ARCH ];then
+		mkdir $ARCH
+	fi
+	debootstrap --arch $ARCH wheezy $ARCH $SERVER
+}
+
+case $1 in
+"--config")
+	if [ -f config/config-$2 ];then
+		source config/config-$2
+		source config/folders
+		bootstrap
+	fi
+;;
+esac
