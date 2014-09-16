@@ -1,1 +1,1 @@
-export BOOTSTRAP_FOLDER="src"
+export ISO="iso/rootfs"

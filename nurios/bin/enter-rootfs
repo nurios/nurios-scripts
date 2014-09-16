@@ -1,0 +1,39 @@
+#!/bin/bash
+bind-folders()
+{
+	if [ -d $ARCH ];then
+		if [ -d $ISO/$ARCH/sys ];then
+			mount --bind /dev $ISO/$ARCH/sys
+		fi
+		if [ -d $ARCH/tmp ];then
+			mount --bind /tmp $ISO/$ARCH/tmp
+		fi
+		if [ -d $ARCH/dev ];then
+			mount --bind /dev $ISO/$ARCH/dev
+		fi
+		if [ -d $ARCH/proc ];then
+			mount --bind /proc $ISO/$ARCH/proc
+		fi
+	fi
+}
+
+enter-chroot()
+{
+	if [ -d $ARCH ];then
+		OLDPS1 = $PS1
+		PS1 = "(chroot) $PS1" 
+		chroot $ISO/$ARCH /bin/bash
+		PS1 = OLDPS1
+	fi
+}
+
+case $1 in
+"--config")
+	if [ -f config/config-$2 ];then
+		source config/config-$2
+		source config/folders
+		bind-folders
+		enter-chroot
+	fi
+;;
+esac
