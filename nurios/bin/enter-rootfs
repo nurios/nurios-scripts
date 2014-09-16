@@ -3,7 +3,7 @@ bind-folders()
 {
 	if [ -d $ISO/$ROOTFS/$ARCH ];then
 		if [ -d $ISO/$ROOTFS/$ARCH/sys ];then
-			mount --bind /dev $ISO/$ROOTFS/$ARCH/sys
+			mount --bind /sys $ISO/$ROOTFS/$ARCH/sys
 		fi
 		if [ -d $ISO/$ROOTFS/$ARCH/tmp ];then
 			mount --bind /tmp $ISO/$ROOTFS/$ARCH/tmp
@@ -16,14 +16,19 @@ bind-folders()
 		fi
 	fi
 }
+unbind-folders()
+{
+	umount -l $ISO/$ROOTFS/$ARCH/proc
+	umount -l $ISO/$ROOTFS/$ARCH/sys
+	umount -l $ISO/$ROOTFS/$ARCH/dev
+	umount -l $ISO/$ROOTFS/$ARCH/tmp
+}
+
 
 enter-chroot()
 {
-	if [ -d $ARCH ];then
-		OLDPS1 = $PS1
-		PS1 = "(chroot) $PS1" 
-		chroot $ISO/$ROOTFS/$ARCH /bin/bash
-		PS1 = OLDPS1
+	if [ -d $ISO/$ROOTFS/$ARCH ];then
+		chroot $ISO/$ROOTFS/$ARCH
 	fi
 }
 
@@ -34,6 +39,7 @@ case $1 in
 		source config/folders
 		bind-folders
 		enter-chroot
+		unbind-folders
 	fi
 ;;
 esac
