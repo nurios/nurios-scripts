@@ -1,10 +1,10 @@
 #!/bin/bash
 bootstrap()
 {
-	if [ ! -d $ISO/$ARCH ];then
-		mkdir -p $ISO/$ARCH
+	if [ ! -d $ISO/$ROOTFS/$ARCH ];then
+		mkdir -p $ISO/$ROOTFS/$ARCH
 	fi
-	debootstrap --arch $ARCH wheezy $ISO/$ARCH $SERVER
+	debootstrap --arch $ARCH wheezy $ISO/$ROOTFS/$ARCH $SERVER
 }
 
 case $1 in

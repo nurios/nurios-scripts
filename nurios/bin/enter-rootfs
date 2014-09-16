@@ -1,18 +1,18 @@
 #!/bin/bash
 bind-folders()
 {
-	if [ -d $ARCH ];then
-		if [ -d $ISO/$ARCH/sys ];then
-			mount --bind /dev $ISO/$ARCH/sys
+	if [ -d $ISO/$ROOTFS/$ARCH ];then
+		if [ -d $ISO/$ROOTFS/$ARCH/sys ];then
+			mount --bind /dev $ISO/$ROOTFS/$ARCH/sys
 		fi
-		if [ -d $ARCH/tmp ];then
-			mount --bind /tmp $ISO/$ARCH/tmp
+		if [ -d $ISO/$ROOTFS/$ARCH/tmp ];then
+			mount --bind /tmp $ISO/$ROOTFS/$ARCH/tmp
 		fi
-		if [ -d $ARCH/dev ];then
-			mount --bind /dev $ISO/$ARCH/dev
+		if [ -d $ISO/$ROOTFS/$ARCH/dev ];then
+			mount --bind /dev $ISO/$ROOTFS/$ARCH/dev
 		fi
-		if [ -d $ARCH/proc ];then
-			mount --bind /proc $ISO/$ARCH/proc
+		if [ -d $ISO/$ROOTFS/$ARCH/proc ];then
+			mount --bind /proc $ISO/$ROOTFS/$ARCH/proc
 		fi
 	fi
 }
@@ -22,7 +22,7 @@ enter-chroot()
 	if [ -d $ARCH ];then
 		OLDPS1 = $PS1
 		PS1 = "(chroot) $PS1" 
-		chroot $ISO/$ARCH /bin/bash
+		chroot $ISO/$ROOTFS/$ARCH /bin/bash
 		PS1 = OLDPS1
 	fi
 }
