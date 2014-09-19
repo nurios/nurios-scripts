@@ -1,0 +1,18 @@
+#!/bin/bash
+
+create_fs(){
+	mksquashfs $ISO/$ROOTFS/$ARCH $ISO/nurios_$ARCH.squashfs 
+}
+
+
+case $1 in
+"--config")
+        if [ -f config/config-$2 ];then
+                source config/config-$2
+                source config/folders
+                bind-folders
+                create_fs
+        fi
+;;
+esac
+
