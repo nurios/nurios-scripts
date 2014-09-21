@@ -1,0 +1,17 @@
+#!/bin/bash
+iso_generate()
+{
+	mkisofs -r -V "$IMAGE_NAME" -cache-inodes -J -l -b $ISO/cd/image/isolinux/isolinux.bin -c $ISO/cd/image/isolinux/booy.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $ISO/$OUTPUT
+}
+
+
+case $1 in
+"--config")
+        if [ -f config/config-$2 ];then
+                source config/config-$2
+                source config/folders
+		iso_generate
+        fi
+;;
+esac
+

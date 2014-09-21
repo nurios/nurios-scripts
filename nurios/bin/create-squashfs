@@ -1,7 +1,21 @@
 #!/bin/bash
 
 create_fs(){
-	mksquashfs $ISO/$ROOTFS/$ARCH $ISO/nurios_$ARCH.squashfs 
+	mksquashfs $ISO/$ROOTFS/$ARCH $ISO/cd/nurios_$ARCH.squashfs
+	mkdir -p $ISO/cd/image/{casper,isolinux,install}
+	for file in $ISO/$ROOTFS/$ARCH/boot/vmlinuz*; do cp $file $ISO/cd/image/casper/vmlinuz; done
+	for file in $ISO/$ROOTFS/$ARCH/boot/initrd.img*; do cp $file $ISO/cd/image/casper/initrd.lz; done
+	cp /usr/lib/syslinux/isolinux.bin $ISO/cd/image/isolinux/
+	cp /boot/memtest86+.bin $ISO/cd/image/install/memtest
+	cp $ISOCONF $ISO/cd/image/isolinux/isolinux.cfg
+	cp $ISODEFS $ISO/cd/image/README.diskdefines
+	touch $ISO/cd/image/ubuntu
+	mkdir $ISO/cd/image/.disk
+	touch $ISO/cd/image/.disk/base_installable
+	echo "full_cd/single" > $ISO/cd/image/.disk/cd_type
+	echo "NuriOS Development ISO" > $ISO/cd/image/.disk/info
+	echo "http//nurios.org" > $ISO/cd/image/.disk/release_notes_url
+	find $ISO/cd/image/ -type f -print0 | xargs -0 md5sum | grep -v "\./md5sum.txt" > $ISO/cd/md5sum.txt
 }
 
 

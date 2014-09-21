@@ -1,3 +1,6 @@
 export ISO="iso"
 export ROOTFS="rootfs"
 export OUTPUT="wheezy-dev.iso"
+export ISOCONF="config/isolinux.cfg"
+export ISODEFS="config/README.diskdefines"
+export IMAGE_NAME="NuriOS-Dev"
