@@ -28,8 +28,9 @@ unbind-folders()
 install-package()
 {
 	if [ -d $ISO/$ROOTFS/$ARCH ];then
-		chroot $ISO/$ROOTFS/$ARCH apt-get update
-		chroot $ISO/$ROOTFS/$ARCH apt-get install $1
+		chroot $ISO/$ROOTFS/$ARCH apt-get update --force-yes -y
+		chroot $ISO/$ROOTFS/$ARCH apt-get upgrade -y
+		chroot $ISO/$ROOTFS/$ARCH apt-get install -y $1
 	fi
 }
 
@@ -39,7 +40,7 @@ case $1 in
 		source config/config-$2
 		source config/folders
 		bind-folders
-		install-package linux-image-3.2.0-4-amd64 linux-base
+		install-package $PACKAGES
 		unbind-folders
 	fi
 ;;

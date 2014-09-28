@@ -1,3 +1,4 @@
 export ARCH="amd64"
 export SERVER="http://http.debian.net/debian/"
 export CODENAME="wheezy"
+export PACKAGES="linux-image-3.2.0-4-$ARCH linux-base"

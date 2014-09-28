@@ -11,7 +11,6 @@ Gereken paketlerin kurulumu için `iso-uretim/bin/install-depends` scriptinin ç
 Yapılacaklar listesi
 ------------
 - img/iso/tar.gz formatında imajların otomatik üretimi
-- paketlerin otomatik kurulması
 - ayarların otomatik olarak yapılandırılması
 
 
