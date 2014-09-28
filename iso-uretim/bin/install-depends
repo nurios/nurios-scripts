@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo apt-get install debootstrap mkisofs squashfs-tools vim git build-essential genisoimage gcc automake make 

@@ -1,3 +1,0 @@
-export ARCH="arm"
-export SERVER="http://http.debian.net/debian/"
-export CODENAME="wheezy"
