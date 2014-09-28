@@ -1,7 +1,7 @@
 #!/bin/bash
 
 create_fs(){
-	mksquashfs $ISO/$ROOTFS/$ARCH $ISO/cd/nurios_$ARCH.squashfs
+	mksquashfs $ISO/$ROOTFS/$ARCH $ISO/cd/image/nurios_$ARCH.squashfs
 	mkdir -p $ISO/cd/image/{casper,isolinux,install}
 	for file in $ISO/$ROOTFS/$ARCH/boot/vmlinuz*; do cp $file $ISO/cd/image/casper/vmlinuz; done
 	for file in $ISO/$ROOTFS/$ARCH/boot/initrd.img*; do cp $file $ISO/cd/image/casper/initrd.lz; done
@@ -15,7 +15,7 @@ create_fs(){
 	echo "full_cd/single" > $ISO/cd/image/.disk/cd_type
 	echo "NuriOS Development ISO" > $ISO/cd/image/.disk/info
 	echo "http//nurios.org" > $ISO/cd/image/.disk/release_notes_url
-	find $ISO/cd/image/ -type f -print0 | xargs -0 md5sum | grep -v "\./md5sum.txt" > $ISO/cd/md5sum.txt
+	find $ISO/cd/image/ -type f -print0 | xargs -0 md5sum | grep -v "\./md5sum.txt" > $ISO/cd/image/md5sum.txt
 }
 
 
@@ -24,7 +24,6 @@ case $1 in
         if [ -f config/config-$2 ];then
                 source config/config-$2
                 source config/folders
-                bind-folders
                 create_fs
         fi
 ;;

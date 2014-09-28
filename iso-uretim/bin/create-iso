@@ -1,7 +1,7 @@
 #!/bin/bash
 iso_generate()
 {
-	mkisofs -r -V "$IMAGE_NAME" -cache-inodes -J -l -b $ISO/cd/image/isolinux/isolinux.bin -c $ISO/cd/image/isolinux/booy.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $ISO/$OUTPUT
+	genisoimage -r -V "$IMAGE_NAME" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $ISO/$OUTPUT $ISO/cd/image/
 }
 
 
