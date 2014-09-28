@@ -1,2 +1,46 @@
 #!/bin/bash
+bind-folders()
+{
+	if [ -d $ISO/$ROOTFS/$ARCH ];then
+		if [ -d $ISO/$ROOTFS/$ARCH/sys ];then
+			mount --bind /sys $ISO/$ROOTFS/$ARCH/sys
+		fi
+		if [ -d $ISO/$ROOTFS/$ARCH/tmp ];then
+			mount --bind /tmp $ISO/$ROOTFS/$ARCH/tmp
+		fi
+		if [ -d $ISO/$ROOTFS/$ARCH/dev ];then
+			mount --bind /dev $ISO/$ROOTFS/$ARCH/dev
+		fi
+		if [ -d $ISO/$ROOTFS/$ARCH/proc ];then
+			mount --bind /proc $ISO/$ROOTFS/$ARCH/proc
+		fi
+	fi
+}
+unbind-folders()
+{
+	umount -l $ISO/$ROOTFS/$ARCH/proc
+	umount -l $ISO/$ROOTFS/$ARCH/sys
+	umount -l $ISO/$ROOTFS/$ARCH/dev
+	umount -l $ISO/$ROOTFS/$ARCH/tmp
+}
 
+
+install-package()
+{
+	if [ -d $ISO/$ROOTFS/$ARCH ];then
+		chroot $ISO/$ROOTFS/$ARCH apt-get update
+		chroot $ISO/$ROOTFS/$ARCH apt-get install $1
+	fi
+}
+
+case $1 in
+"--config")
+	if [ -f config/config-$2 ];then
+		source config/config-$2
+		source config/folders
+		bind-folders
+		install-package linux-image-3.2.0-4-amd64 linux-base
+		unbind-folders
+	fi
+;;
+esac

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 create_fs(){
-	mksquashfs $ISO/$ROOTFS/$ARCH $ISO/cd/image/nurios_$ARCH.squashfs
 	mkdir -p $ISO/cd/image/{casper,isolinux,install}
+	mksquashfs $ISO/$ROOTFS/$ARCH $ISO/cd/image/casper/nurios_$ARCH.squashfs
 	for file in $ISO/$ROOTFS/$ARCH/boot/vmlinuz*; do cp $file $ISO/cd/image/casper/vmlinuz; done
 	for file in $ISO/$ROOTFS/$ARCH/boot/initrd.img*; do cp $file $ISO/cd/image/casper/initrd.lz; done
 	cp /usr/lib/syslinux/isolinux.bin $ISO/cd/image/isolinux/
