@@ -1,5 +1,6 @@
 nurios-scripts
 ==============
+NuriOS scriptleri için hazırlanmış depodur.
 
 iso-uretim
 ------------
@@ -9,17 +10,14 @@ Gereken paketlerin kurulumu için `iso-uretim/bin/install-depends` scriptinin ç
 
 Yapılacaklar listesi
 ------------
-1. img/iso/tar.gz formatında imajların otomatik üretimi
+- img/iso/tar.gz formatında imajların otomatik üretimi
+- paketlerin otomatik kurulması
+- ayarların otomatik olarak yapılandırılması
 
-2. paketlerin otomatik kurulması
-
-3. ayarların otomatik olarak
-
-4. gerekli paketleri otomatik olarak kuracak script
 
 
 Gerekli derleme ortamı
 -------------
-Ubuntu 14.04 LTS 64 bit / Debian Wheezy 64 bit
-Minimum 60GB Disk
-2GB ve üzeri RAM
+- Ubuntu 14.04 LTS 64 bit / Debian Wheezy 64 bit
+- Minimum 60GB Disk
+- 2GB ve üzeri RAM
