@@ -2,10 +2,12 @@ nurios-scripts
 ==============
 
 iso-uretim
--------------
+------------
 Iso üretim ile ilgili scriptlerin bulunduğu klasördür. Basit olarak config klasörü kullanılarak yapılandırmalar ayarlanabilir ve `make` kullanılarak otomatik olarak iso oluşturulması sağlanabilir
 
-YAPILACAKLAR: 
+Gereken paketlerin kurulumu için `iso-uretim/bin/install-depends` scriptinin çalıştırılması yeterlidir.
+
+Yapılacaklar listesi
 ------------
 1. img/iso/tar.gz formatında imajların otomatik üretimi
 
@@ -14,3 +16,10 @@ YAPILACAKLAR:
 3. ayarların otomatik olarak
 
 4. gerekli paketleri otomatik olarak kuracak script
+
+
+Gerekli derleme ortamı
+-------------
+Ubuntu 14.04 LTS 64 bit / Debian Wheezy 64 bit
+Minimum 60GB Disk
+2GB ve üzeri RAM
