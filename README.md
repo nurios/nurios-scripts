@@ -20,3 +20,11 @@ Gerekli derleme ortamı
 - Ubuntu 14.04 LTS 64 bit / Debian Wheezy 64 bit
 - Minimum 60GB Disk
 - 2GB ve üzeri RAM
+
+
+
+
+webapi
+------------
+NuriOS'un arkaplandaki işlevleri için çok hızlı ve basit bir API çözümüdür.
+Core PHP Framework ile geliştirilecektir.
