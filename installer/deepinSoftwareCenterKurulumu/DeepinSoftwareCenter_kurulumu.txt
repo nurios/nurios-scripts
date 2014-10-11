@@ -1,0 +1,22 @@
+Öncelikle /etc/apt/sources.list dosyasına aşağıdaki satır eklenir:
+
+* deb http://ppa.launchpad.net/noobslab/deepin-sc/ubuntu precise main 
+
+Daha sonra güncellemeler alınır:
+
+* sudo apt-get update
+
+Güncellemeler alındıktan sonra deepin-software-center kurulumu yapılır:
+
+* sudo apt-get install deepin-software-center
+
+ekte bulunan "apt" dizini içerisinde yer alan dosyalar kopyalanır ve sembolik linkler oluşturulur:
+
+* sudo cp progress/old.py  /usr/share/pyshared/apt/progress
+* sudo ln -s /usr/share/pyshared/apt/progress/old.py  /usr/lib/python2.7/dist-packages/apt/progress/old.py
+
+* sudo cp deprecation.py   /usr/share/pyshared/apt
+* sudo ln -s /usr/share/pyshared/apt/deprecation.py  /usr/lib/python2.7/dist-packages/apt/deprecation.py
+
+
+Deepin Software Center çalıştırılmaya hazırdır.
